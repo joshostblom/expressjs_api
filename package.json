@@ -1,18 +1,17 @@
 {
-  "name": "myapi",
+  "name": "expressjs_api",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "database.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.3"
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.10.1"
   }
 }
