@@ -1,0 +1,20 @@
+meta {
+  name: Update Project
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/project/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Project title",
+    "description": "project description",
+    "link": "http://example.com",
+    "image": "http://example.com/image.jpg"
+  }
+}
