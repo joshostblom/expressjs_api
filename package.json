@@ -2,9 +2,9 @@
   "name": "expressjs_api",
   "version": "1.0.0",
   "type": "module",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon app.js"
+    "dev": "npx nodemon index.js"
   },
   "keywords": [],
   "author": "",
