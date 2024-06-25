@@ -5,10 +5,10 @@ dotenv.config();
 
 const pool = mysql
   .createPool({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_PORTFOLIO_USER,
+    password: process.env.MYSQL_PORTFOLIO_PASSWORD,
+    database: process.env.MYSQL_PORTFOLIO_DATABASE,
   })
   .promise();
 
