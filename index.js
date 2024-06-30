@@ -1,6 +1,7 @@
 import express from "express";
 import projectRoute from "./routes/ProjectRoutes.js";
 import resourceRoute from "./routes/ResourceRoutes.js";
+import adminRoute from "./routes/AdminRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors());
 
 app.use("/project", projectRoute);
 app.use("/resources", resourceRoute);
+app.use("/admin", adminRoute);
 
 app.use((error, req, res, next) => {
   console.error(error.stack);
