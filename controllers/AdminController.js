@@ -1,3 +1,5 @@
+import { createToken } from "../utility/JWT.js";
+
 export default {
   login: async (req, res) => {
     const { user, password } = req.body;
@@ -5,9 +7,16 @@ export default {
       user == process.env.ADMIN_USER &&
       password == process.env.ADMIN_PASSWORD
     ) {
-      res.send(true);
+      const token = createToken(user);
+      res.send({
+        token: token,
+        loginSuccessful: true,
+      });
     } else {
-      res.send(false);
+      res.send({
+        token: null,
+        loginSuccessful: false,
+      });
     }
   },
 };
