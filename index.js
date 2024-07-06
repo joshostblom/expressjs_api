@@ -5,12 +5,17 @@ import adminRoute from "./routes/AdminRoutes.js";
 import cors from "cors";
 
 const app = express();
-
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: "http://localhost:4000",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.use("/project", projectRoute);
 app.use("/resources", resourceRoute);
+app.options("/admin", cors(corsOptions));
 app.use("/admin", adminRoute);
 
 app.use((error, req, res, next) => {

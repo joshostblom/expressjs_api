@@ -1,4 +1,8 @@
-import { createToken } from "../utility/JWT.js";
+import {
+  createAccessToken,
+  createRefreshToken,
+  verifyRefreshToken,
+} from "../utility/JWT.js";
 
 export default {
   login: async (req, res) => {
@@ -7,16 +11,19 @@ export default {
       user == process.env.ADMIN_USER &&
       password == process.env.ADMIN_PASSWORD
     ) {
-      const token = createToken(user);
+      const accessToken = createAccessToken(user);
+      const refreshToken = createRefreshToken(user);
+      res.cookie("jwt", refreshToken, { httpOnly: true, secure: true });
       res.send({
-        token: token,
+        accessToken: accessToken,
         loginSuccessful: true,
       });
     } else {
-      res.send({
-        token: null,
-        loginSuccessful: false,
-      });
+      res.status(401).json({ message: "Invalid credentials" });
     }
+  },
+
+  refresh: async (req, res) => {
+    verifyRefreshToken(req, res);
   },
 };
