@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export function createAccessToken(user) {
-  return jwt.sign({ user }, process.env.JWT_SECRET, {
+  return jwt.sign({ user }, process.env.TOKEN_SECRET, {
     expiresIn: "10h",
   });
 }
@@ -11,7 +11,7 @@ export function createRefreshToken(user) {
 }
 
 export function verifyAccessToken(req, res, next) {
-  const authHeader = req.headers["Authorization"];
+  const authHeader = req.headers["authorization"];
   if (!authHeader) {
     return res.status(401).json({ message: "Authorization header is missing" });
   }
@@ -29,6 +29,7 @@ export function verifyAccessToken(req, res, next) {
 export function verifyRefreshToken(req, res) {
   const refreshToken = req.cookies.jwt;
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    console.log(err);
     if (err) return res.sendStatus(403);
     const accessToken = createAccessToken(user);
     res.json({ accessToken });

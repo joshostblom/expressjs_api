@@ -15,8 +15,8 @@ export default {
       const refreshToken = createRefreshToken(user);
       res.cookie("jwt", refreshToken, { httpOnly: true, secure: true });
       res.send({
+        user: user,
         accessToken: accessToken,
-        loginSuccessful: true,
       });
     } else {
       res.status(401).json({ message: "Invalid credentials" });

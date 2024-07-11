@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.post("/login", controller.login);
 
+router.get("/refresh", controller.refresh);
+
 export default router;
